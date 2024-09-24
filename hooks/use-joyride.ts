@@ -1,15 +1,7 @@
 import { useState } from "react";
-import { Step, STATUS, CallBackProps, Callback } from "react-joyride";
+import { CallBackProps, STATUS, Step } from "react-joyride";
 
-const localStorageKey = "joyrideStatus";
-
-export function joyrideCallbacks(middlewares: Callback[]) {
-  return (data: CallBackProps) => {
-    for (const middleware of middlewares) {
-      middleware(data);
-    }
-  };
-}
+const localStorageKey = "completedJoyrideSteps";
 
 export function useJoyride(steps: Step[]) {
   const [run, setRun] = useState(() => {
@@ -17,22 +9,46 @@ export function useJoyride(steps: Step[]) {
       return false;
     }
 
-    const savedStatus = localStorage.getItem(localStorageKey);
+    const completedSteps = getCompletedSteps();
 
-    return savedStatus !== STATUS.SKIPPED;
+    return steps.some((step) => !completedSteps.includes(step.target));
   });
 
-  const handleSkipped = (data: CallBackProps) => {
+  const handleJoyrideCallback = (data: CallBackProps) => {
+    if (data.lifecycle === "complete") {
+      addCompletedStep(data.step.target.toString());
+
+      setRun(steps.some((s) => !getCompletedSteps().includes(s.target)));
+    }
+
     if (data.status === STATUS.SKIPPED) {
-      localStorage.setItem("joyrideStatus", data.status);
+      setCompletedSteps(steps.map((step) => step.target.toString()));
+
       setRun(false);
     }
   };
 
+  const filteredSteps = steps.filter(
+    (step) => !getCompletedSteps().includes(step.target)
+  );
+
   return {
     run,
     setRun,
-    steps,
-    handleSkipped,
+    steps: filteredSteps,
+    handleJoyrideCallback,
   };
+}
+
+function getCompletedSteps() {
+  return JSON.parse(localStorage.getItem(localStorageKey) || "[]");
+}
+
+function addCompletedStep(step: string) {
+  const completedSteps = getCompletedSteps();
+  setCompletedSteps([...completedSteps, step]);
+}
+
+function setCompletedSteps(steps: string[]) {
+  localStorage.setItem(localStorageKey, JSON.stringify([...new Set(steps)]));
 }
