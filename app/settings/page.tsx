@@ -9,8 +9,12 @@ import {
   UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
+import dynamic from "next/dynamic";
 import { useState } from "react";
+import { useJoyride } from "~/hooks/use-joyride";
 import { cn } from "~/lib/utils";
+
+const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
 
 const secondaryNavigation = [
   { name: "General", href: "#", icon: UserCircleIcon, current: true },
@@ -24,13 +28,28 @@ const secondaryNavigation = [
 export default function SettingsPage() {
   const [automaticTimezoneEnabled, setAutomaticTimezoneEnabled] =
     useState(true);
+  const { steps, run, handleJoyrideCallback } = useJoyride([
+    {
+      target: ".settings-sidebar",
+      content:
+        "This is the sidebar. It contains important links and shortcuts to navigate through the application efficiently.",
+    },
+  ]);
 
   return (
     <>
-      <div className="mx-auto max-w-7xl pt-16 lg:flex lg:gap-x-16 lg:px-8">
+      <JoyRideNoSSR
+        steps={steps}
+        run={run}
+        continuous
+        showSkipButton
+        callback={handleJoyrideCallback}
+      />
+
+      <div className="mx-auto max-w-7xl pt-16 lg:flex lg:items-start lg:gap-x-16 lg:px-8">
         <h1 className="sr-only">General Settings</h1>
 
-        <aside className="flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:py-20">
+        <aside className="settings-sidebar inline-flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:mt-20">
           <nav className="flex-none px-4 sm:px-6 lg:px-0">
             <ul
               role="list"
