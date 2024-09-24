@@ -41,6 +41,10 @@ export function useJoyride(steps: Step[]) {
 }
 
 function getCompletedSteps() {
+  if (typeof window === "undefined") {
+    return [];
+  }
+
   return JSON.parse(localStorage.getItem(localStorageKey) || "[]");
 }
 
@@ -50,5 +54,8 @@ function addCompletedStep(step: string) {
 }
 
 function setCompletedSteps(steps: string[]) {
-  localStorage.setItem(localStorageKey, JSON.stringify([...new Set(steps)]));
+  localStorage.setItem(
+    localStorageKey,
+    JSON.stringify([...new Set([...getCompletedSteps(), ...steps])])
+  );
 }
