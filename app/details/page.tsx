@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import {
   Label,
   Listbox,
@@ -27,6 +28,9 @@ import {
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { cn } from "~/lib/utils";
+import { useJoyride } from "~/hooks/use-joyride";
+
+const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
 
 const invoice = {
   subTotal: "$8,800.00",
@@ -164,9 +168,42 @@ const moods = [
 
 export default function DetailsPage() {
   const [selected, setSelected] = useState(moods[5]);
+  const { steps, run, handleJoyrideCallback } = useJoyride([
+    {
+      target: ".details-invoice-summary",
+      title: "Invoice Summary",
+      content:
+        "Here you can see a summary of the invoice, including the total amount and a breakdown of charges.",
+    },
+    {
+      target: ".details-invoice",
+      title: "Invoice Details",
+      content:
+        "This section contains detailed information about the invoice, including line items and descriptions.",
+    },
+    {
+      target: ".details-activity-feed",
+      title: "Activity Feed",
+      content:
+        "The activity feed shows recent actions and comments related to this invoice.",
+    },
+    {
+      target: ".details-new-comment-form",
+      title: "New Comment",
+      content:
+        "Use this form to add a new comment to the invoice. You can also attach files and select your mood.",
+    },
+  ]);
 
   return (
     <>
+      <JoyRideNoSSR
+        steps={steps}
+        run={run}
+        continuous
+        showSkipButton
+        callback={handleJoyrideCallback}
+      />
       <main>
         <header className="relative isolate pt-16">
           <div
@@ -261,7 +298,7 @@ export default function DetailsPage() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {/* Invoice summary */}
-            <div className="lg:col-start-3 lg:row-end-1">
+            <div className="details-invoice-summary lg:col-start-3 lg:row-end-1">
               <h2 className="sr-only">Summary</h2>
               <div className="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
                 <dl className="flex flex-wrap">
@@ -328,7 +365,7 @@ export default function DetailsPage() {
             </div>
 
             {/* Invoice */}
-            <div className="-mx-4 px-4 py-8 shadow-sm ring-1 ring-gray-900/5 sm:mx-0 sm:rounded-lg sm:px-8 sm:pb-14 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:px-16 xl:pb-20 xl:pt-16">
+            <div className="details-invoice -mx-4 px-4 py-8 shadow-sm ring-1 ring-gray-900/5 sm:mx-0 sm:rounded-lg sm:px-8 sm:pb-14 lg:col-span-2 lg:row-span-2 lg:row-end-2 xl:px-16 xl:pb-20 xl:pt-16">
               <h2 className="text-base font-semibold leading-6 text-gray-900">
                 Invoice
               </h2>
@@ -486,81 +523,83 @@ export default function DetailsPage() {
 
             <div className="lg:col-start-3">
               {/* Activity feed */}
-              <h2 className="text-sm font-semibold leading-6 text-gray-900">
-                Activity
-              </h2>
-              <ul role="list" className="mt-6 space-y-6">
-                {activity.map((activityItem, activityItemIdx) => (
-                  <li key={activityItem.id} className="relative flex gap-x-4">
-                    <div
-                      className={cn(
-                        activityItemIdx === activity.length - 1
-                          ? "h-6"
-                          : "-bottom-6",
-                        "absolute left-0 top-0 flex w-6 justify-center"
-                      )}
-                    >
-                      <div className="w-px bg-gray-200" />
-                    </div>
-                    {activityItem.type === "commented" ? (
-                      <>
-                        <img
-                          alt=""
-                          src={activityItem.person.imageUrl}
-                          className="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50"
-                        />
-                        <div className="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200">
-                          <div className="flex justify-between gap-x-4">
-                            <div className="py-0.5 text-xs leading-5 text-gray-500">
-                              <span className="font-medium text-gray-900">
-                                {activityItem.person.name}
-                              </span>{" "}
-                              commented
+              <div className="details-activity-feed">
+                <h2 className="text-sm font-semibold leading-6 text-gray-900">
+                  Activity
+                </h2>
+                <ul role="list" className="mt-6 space-y-6">
+                  {activity.map((activityItem, activityItemIdx) => (
+                    <li key={activityItem.id} className="relative flex gap-x-4">
+                      <div
+                        className={cn(
+                          activityItemIdx === activity.length - 1
+                            ? "h-6"
+                            : "-bottom-6",
+                          "absolute left-0 top-0 flex w-6 justify-center"
+                        )}
+                      >
+                        <div className="w-px bg-gray-200" />
+                      </div>
+                      {activityItem.type === "commented" ? (
+                        <>
+                          <img
+                            alt=""
+                            src={activityItem.person.imageUrl}
+                            className="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50"
+                          />
+                          <div className="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200">
+                            <div className="flex justify-between gap-x-4">
+                              <div className="py-0.5 text-xs leading-5 text-gray-500">
+                                <span className="font-medium text-gray-900">
+                                  {activityItem.person.name}
+                                </span>{" "}
+                                commented
+                              </div>
+                              <time
+                                dateTime={activityItem.dateTime}
+                                className="flex-none py-0.5 text-xs leading-5 text-gray-500"
+                              >
+                                {activityItem.date}
+                              </time>
                             </div>
-                            <time
-                              dateTime={activityItem.dateTime}
-                              className="flex-none py-0.5 text-xs leading-5 text-gray-500"
-                            >
-                              {activityItem.date}
-                            </time>
+                            <p className="text-sm leading-6 text-gray-500">
+                              {activityItem.comment}
+                            </p>
                           </div>
-                          <p className="text-sm leading-6 text-gray-500">
-                            {activityItem.comment}
+                        </>
+                      ) : (
+                        <>
+                          <div className="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
+                            {activityItem.type === "paid" ? (
+                              <CheckCircleIcon
+                                aria-hidden="true"
+                                className="h-6 w-6 text-indigo-600"
+                              />
+                            ) : (
+                              <div className="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
+                            )}
+                          </div>
+                          <p className="flex-auto py-0.5 text-xs leading-5 text-gray-500">
+                            <span className="font-medium text-gray-900">
+                              {activityItem.person.name}
+                            </span>{" "}
+                            {activityItem.type} the invoice.
                           </p>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
-                          {activityItem.type === "paid" ? (
-                            <CheckCircleIcon
-                              aria-hidden="true"
-                              className="h-6 w-6 text-indigo-600"
-                            />
-                          ) : (
-                            <div className="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
-                          )}
-                        </div>
-                        <p className="flex-auto py-0.5 text-xs leading-5 text-gray-500">
-                          <span className="font-medium text-gray-900">
-                            {activityItem.person.name}
-                          </span>{" "}
-                          {activityItem.type} the invoice.
-                        </p>
-                        <time
-                          dateTime={activityItem.dateTime}
-                          className="flex-none py-0.5 text-xs leading-5 text-gray-500"
-                        >
-                          {activityItem.date}
-                        </time>
-                      </>
-                    )}
-                  </li>
-                ))}
-              </ul>
+                          <time
+                            dateTime={activityItem.dateTime}
+                            className="flex-none py-0.5 text-xs leading-5 text-gray-500"
+                          >
+                            {activityItem.date}
+                          </time>
+                        </>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* New comment form */}
-              <div className="mt-6 flex gap-x-3">
+              <div className="details-new-comment-form mt-6 flex gap-x-3">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
