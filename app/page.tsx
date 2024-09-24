@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/20/solid";
 import dynamic from "next/dynamic";
 import { Fragment } from "react";
-import { useOnboarding } from "~/hooks/use-onboarding";
+import { useOnboarding } from "~/app/use-onboarding";
 import { cn } from "~/lib/utils";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
@@ -184,7 +184,7 @@ export default function HomePage() {
                     key={item.name}
                     href={item.href}
                     className={
-                      item.current ? "text-indigo-600" : "text-gray-700"
+                      item.current ? "text-violet-600" : "text-gray-700"
                     }
                   >
                     {item.name}
@@ -193,7 +193,7 @@ export default function HomePage() {
               </div>
               <a
                 href="#"
-                className="ml-auto flex items-center gap-x-1 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="ml-auto flex items-center gap-x-1 rounded-md bg-violet-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600"
               >
                 <PlusSmallIcon aria-hidden="true" className="-ml-1.5 h-5 w-5" />
                 New invoice
@@ -328,7 +328,7 @@ export default function HomePage() {
                                 <div className="flex justify-end">
                                   <a
                                     href={transaction.href}
-                                    className="text-sm font-medium leading-6 text-indigo-600 hover:text-indigo-500"
+                                    className="text-sm font-medium leading-6 text-violet-600 hover:text-violet-500"
                                   >
                                     View
                                     <span className="hidden sm:inline">
@@ -368,7 +368,7 @@ export default function HomePage() {
                 </h2>
                 <a
                   href="#"
-                  className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                  className="text-sm font-semibold leading-6 text-violet-600 hover:text-violet-500"
                 >
                   View all<span className="sr-only">, clients</span>
                 </a>

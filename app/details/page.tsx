@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import {
   Label,
   Listbox,
@@ -13,22 +12,26 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import {
-  CalendarDaysIcon,
-  CreditCardIcon,
   EllipsisVerticalIcon,
   FaceFrownIcon,
-  FaceSmileIcon,
   FireIcon,
   HandThumbUpIcon,
   HeartIcon,
-  PaperClipIcon,
-  UserCircleIcon,
   XMarkIcon as XMarkIconMini,
 } from "@heroicons/react/20/solid";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import {
+  CalendarDaysIcon,
+  CheckCircleIcon,
+  CreditCardIcon,
+  FaceSmileIcon,
+  PaperClipIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
+import dynamic from "next/dynamic";
 import { useState } from "react";
+import { useOnboarding } from "~/app/use-onboarding";
+import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
-import { useOnboarding } from "~/hooks/use-onboarding";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
 
@@ -235,24 +238,13 @@ export default function DetailsPage() {
                 </h1>
               </div>
               <div className="flex items-center gap-x-4 sm:gap-x-6">
-                <button
-                  type="button"
-                  className="hidden text-sm font-semibold leading-6 text-gray-900 sm:block"
-                >
+                <Button variant="ghost" className="hidden sm:block">
                   Copy URL
-                </button>
-                <a
-                  href="#"
-                  className="hidden text-sm font-semibold leading-6 text-gray-900 sm:block"
-                >
-                  Edit
-                </a>
-                <a
-                  href="#"
-                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Send
-                </a>
+                </Button>
+                <Button variant="ghost" className="hidden sm:block" asChild>
+                  <a href="#">Edit</a>
+                </Button>
+                <Button>Send</Button>
 
                 <Menu as="div" className="relative sm:hidden">
                   <MenuButton className="-m-3 block p-3">
@@ -263,14 +255,11 @@ export default function DetailsPage() {
                     />
                   </MenuButton>
 
-                  <MenuItems
-                    transition
-                    className="absolute right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
-                  >
+                  <MenuItems className="absolute right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                     <MenuItem>
                       <button
                         type="button"
-                        className="block w-full px-3 py-1 text-left text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50"
+                        className="block w-full px-3 py-1 text-left text-sm leading-6 text-gray-900 hover:bg-gray-50"
                       >
                         Copy URL
                       </button>
@@ -278,7 +267,7 @@ export default function DetailsPage() {
                     <MenuItem>
                       <a
                         href="#"
-                        className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50"
+                        className="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50"
                       >
                         Edit
                       </a>
@@ -349,12 +338,14 @@ export default function DetailsPage() {
                   </div>
                 </dl>
                 <div className="mt-6 border-t border-gray-900/5 px-6 py-6">
-                  <a
-                    href="#"
-                    className="text-sm font-semibold leading-6 text-gray-900"
-                  >
-                    Download receipt <span aria-hidden="true">&rarr;</span>
-                  </a>
+                  <Button variant="link" asChild>
+                    <a
+                      href="#"
+                      className="text-sm font-semibold leading-6 text-gray-900"
+                    >
+                      Download receipt <span aria-hidden="true">&rarr;</span>
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -568,7 +559,7 @@ export default function DetailsPage() {
                             {activityItem.type === "paid" ? (
                               <CheckCircleIcon
                                 aria-hidden="true"
-                                className="h-6 w-6 text-indigo-600"
+                                className="h-6 w-6 text-violet-600"
                               />
                             ) : (
                               <div className="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
@@ -601,7 +592,7 @@ export default function DetailsPage() {
                   className="h-6 w-6 flex-none rounded-full bg-gray-50"
                 />
                 <form action="#" className="relative flex-auto">
-                  <div className="overflow-hidden rounded-lg pb-12 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
+                  <div className="overflow-hidden rounded-lg pb-12 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-violet-600">
                     <label htmlFor="comment" className="sr-only">
                       Add your comment
                     </label>
@@ -666,15 +657,12 @@ export default function DetailsPage() {
                               </span>
                             </ListboxButton>
 
-                            <ListboxOptions
-                              transition
-                              className="absolute z-10 -ml-6 mt-1 w-60 rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none data-[closed]:data-[leave]:opacity-0 data-[leave]:transition data-[leave]:duration-100 data-[leave]:ease-in sm:ml-auto sm:w-64 sm:text-sm"
-                            >
+                            <ListboxOptions className="absolute z-10 -ml-6 mt-1 w-60 rounded-lg bg-white py-3 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none sm:ml-auto sm:w-64 sm:text-sm">
                               {moods.map((mood) => (
                                 <ListboxOption
                                   key={mood.value}
                                   value={mood}
-                                  className="relative cursor-default select-none bg-white px-3 py-2 data-[focus]:bg-gray-100"
+                                  className="relative cursor-default select-none bg-white px-3 py-2 hover:bg-gray-100"
                                 >
                                   <div className="flex items-center">
                                     <div
@@ -702,12 +690,14 @@ export default function DetailsPage() {
                         </Listbox>
                       </div>
                     </div>
-                    <button
+                    <Button
                       type="submit"
-                      className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      variant="outline"
+                      size="sm"
+                      className="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                     >
                       Comment
-                    </button>
+                    </Button>
                   </div>
                 </form>
               </div>

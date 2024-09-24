@@ -11,7 +11,8 @@ import {
 } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { useOnboarding } from "~/hooks/use-onboarding";
+import { useOnboarding } from "~/app/use-onboarding";
+import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
@@ -55,8 +56,8 @@ export default function SettingsPage() {
                     href={item.href}
                     className={cn(
                       item.current
-                        ? "bg-gray-50 text-indigo-600"
-                        : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+                        ? "bg-gray-50 text-violet-600"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-violet-600",
                       "group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm font-semibold leading-6"
                     )}
                   >
@@ -64,8 +65,8 @@ export default function SettingsPage() {
                       aria-hidden="true"
                       className={cn(
                         item.current
-                          ? "text-indigo-600"
-                          : "text-gray-400 group-hover:text-indigo-600",
+                          ? "text-violet-600"
+                          : "text-gray-400 group-hover:text-violet-600",
                         "h-6 w-6 shrink-0"
                       )}
                     />
@@ -95,12 +96,9 @@ export default function SettingsPage() {
                   </dt>
                   <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                     <div className="text-gray-900">Tom Cook</div>
-                    <button
-                      type="button"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
+                    <Button variant="ghost" size="sm">
                       Update
-                    </button>
+                    </Button>
                   </dd>
                 </div>
                 <div className="pt-6 sm:flex">
@@ -109,12 +107,9 @@ export default function SettingsPage() {
                   </dt>
                   <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                     <div className="text-gray-900">tom.cook@example.com</div>
-                    <button
-                      type="button"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
+                    <Button variant="ghost" size="sm">
                       Update
-                    </button>
+                    </Button>
                   </dd>
                 </div>
                 <div className="pt-6 sm:flex">
@@ -123,12 +118,9 @@ export default function SettingsPage() {
                   </dt>
                   <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                     <div className="text-gray-900">Human Resources Manager</div>
-                    <button
-                      type="button"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
+                    <Button variant="ghost" size="sm">
                       Update
-                    </button>
+                    </Button>
                   </dd>
                 </div>
               </dl>
@@ -150,33 +142,24 @@ export default function SettingsPage() {
                   <div className="font-medium text-gray-900">
                     TD Canada Trust
                   </div>
-                  <button
-                    type="button"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
+                  <Button variant="ghost" size="sm">
                     Update
-                  </button>
+                  </Button>
                 </li>
                 <li className="flex justify-between gap-x-6 py-6">
                   <div className="font-medium text-gray-900">
                     Royal Bank of Canada
                   </div>
-                  <button
-                    type="button"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
+                  <Button variant="ghost" size="sm">
                     Update
-                  </button>
+                  </Button>
                 </li>
               </ul>
 
               <div className="flex border-t border-gray-100 pt-6">
-                <button
-                  type="button"
-                  className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-                >
+                <Button variant="link" size="sm">
                   <span aria-hidden="true">+</span> Add another bank
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -194,22 +177,16 @@ export default function SettingsPage() {
               >
                 <li className="flex justify-between gap-x-6 py-6">
                   <div className="font-medium text-gray-900">QuickBooks</div>
-                  <button
-                    type="button"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
+                  <Button variant="ghost" size="sm">
                     Update
-                  </button>
+                  </Button>
                 </li>
               </ul>
 
               <div className="flex border-t border-gray-100 pt-6">
-                <button
-                  type="button"
-                  className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-                >
+                <Button variant="link" size="sm">
                   <span aria-hidden="true">+</span> Add another application
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -229,12 +206,9 @@ export default function SettingsPage() {
                   </dt>
                   <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                     <div className="text-gray-900">English</div>
-                    <button
-                      type="button"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
+                    <Button variant="ghost" size="sm">
                       Update
-                    </button>
+                    </Button>
                   </dd>
                 </div>
                 <div className="pt-6 sm:flex">
@@ -243,12 +217,9 @@ export default function SettingsPage() {
                   </dt>
                   <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
                     <div className="text-gray-900">DD-MM-YYYY</div>
-                    <button
-                      type="button"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
-                    >
+                    <Button variant="ghost" size="sm">
                       Update
-                    </button>
+                    </Button>
                   </dd>
                 </div>
                 <Field className="flex pt-6">
@@ -263,7 +234,7 @@ export default function SettingsPage() {
                     <Switch
                       checked={automaticTimezoneEnabled}
                       onChange={setAutomaticTimezoneEnabled}
-                      className="group flex w-8 cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 data-[checked]:bg-indigo-600"
+                      className="group flex w-8 cursor-pointer rounded-full bg-gray-200 p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-600 data-[checked]:bg-violet-600"
                     >
                       <span
                         aria-hidden="true"
@@ -287,13 +258,7 @@ export default function SettingsPage() {
                 <span className="text-sm font-medium text-gray-900">
                   Reset onboarding tour
                 </span>
-                <button
-                  type="button"
-                  onClick={resetCompletedSteps}
-                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Reset
-                </button>
+                <Button onClick={resetCompletedSteps}>Reset</Button>
               </div>
             </div>
           </div>
