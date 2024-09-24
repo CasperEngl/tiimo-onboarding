@@ -5,7 +5,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { BellIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { useOnboarding } from "~/app/use-onboarding";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -15,23 +14,9 @@ const navigation = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { resetCompletedSteps } = useOnboarding([]);
 
   return (
     <header className="absolute inset-x-0 top-0 z-50">
-      {!!window?.localStorage.getItem("completedOnboardingSteps") ? (
-        <button
-          className="h-8 w-full bg-red-500 text-center text-sm font-semibold leading-6 text-white transition hover:bg-red-500/90"
-          onClick={() => {
-            resetCompletedSteps();
-
-            window.location.reload();
-          }}
-        >
-          Reset onboarding tour
-        </button>
-      ) : null}
-
       <div className="flex h-16 border-b border-gray-900/10">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex flex-1 items-center gap-x-6">
