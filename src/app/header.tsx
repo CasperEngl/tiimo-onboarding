@@ -5,7 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { BellIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { Button } from "~/src/components/ui/button";
+import { Button } from "~/components/ui/button";
 
 const navigation = [
   { name: "Home", href: "/" },
