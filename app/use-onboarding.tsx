@@ -64,7 +64,13 @@ export function useOnboarding(steps: Step[]) {
           zIndex: 1000,
         },
       },
-      showProgress: true,
+      floaterProps: {
+        styles: {
+          floater: {
+            filter: "none",
+          },
+        },
+      },
       tooltipComponent: ({
         index,
         tooltipProps,
