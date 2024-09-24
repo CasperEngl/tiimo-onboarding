@@ -36,7 +36,7 @@ export function useOnboarding(steps: Step[]) {
   };
 
   const filteredSteps = steps.filter(
-    (step) => !getCompletedSteps().includes(step.target)
+    (step) => !getCompletedSteps().includes(step.target),
   );
 
   const resetCompletedSteps = () => {
@@ -107,24 +107,24 @@ export function useOnboarding(steps: Step[]) {
         isLastStep,
       }) => (
         <div
-          className="bg-[#6a3ef6] text-white p-6 rounded-2xl max-w-md shadow-lg relative"
+          className="relative max-w-md rounded-2xl bg-[#6a3ef6] p-6 text-white shadow-lg"
           {...tooltipProps}
         >
           <Button
             variant="ghost"
             size="icon"
             {...closeProps}
-            className="absolute rounded-full top-5 right-5"
+            className="absolute right-5 top-5 rounded-full"
           >
             <XMarkIcon className="size-5" />
           </Button>
-          <h2 className="text-2xl font-bold mb-4">{step.title}</h2>
+          <h2 className="mb-4 text-2xl font-bold">{step.title}</h2>
           <p className="mb-6">{step.content}</p>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <span className="text-sm">
               {index + 1} of {steps.length}
             </span>
-            <div className="space-x-2 flex items-center">
+            <div className="flex items-center space-x-2">
               {!isLastStep && (
                 <Button variant="ghost" {...skipProps}>
                   Skip
@@ -171,6 +171,6 @@ function addCompletedStep(step: string) {
 function setCompletedSteps(steps: string[]) {
   localStorage.setItem(
     localStorageKey,
-    JSON.stringify([...new Set([...getCompletedSteps(), ...steps])])
+    JSON.stringify([...new Set([...getCompletedSteps(), ...steps])]),
   );
 }

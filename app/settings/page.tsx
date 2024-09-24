@@ -44,7 +44,7 @@ export default function SettingsPage() {
       <div className="mx-auto max-w-7xl pt-16 lg:flex lg:items-start lg:gap-x-16 lg:px-8">
         <h1 className="sr-only">General Settings</h1>
 
-        <aside className="settings-sidebar inline-flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:mt-20">
+        <aside className="settings-sidebar inline-flex overflow-x-auto border-b border-gray-900/5 py-4 lg:mt-20 lg:block lg:w-64 lg:flex-none lg:border-0">
           <nav className="flex-none px-4 sm:px-6 lg:px-0">
             <ul
               role="list"
@@ -58,7 +58,7 @@ export default function SettingsPage() {
                       item.current
                         ? "bg-gray-50 text-violet-600"
                         : "text-gray-700 hover:bg-gray-50 hover:text-violet-600",
-                      "group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm font-semibold leading-6"
+                      "group flex gap-x-3 rounded-md py-2 pl-2 pr-3 text-sm font-semibold leading-6",
                     )}
                   >
                     <item.icon
@@ -67,7 +67,7 @@ export default function SettingsPage() {
                         item.current
                           ? "text-violet-600"
                           : "text-gray-400 group-hover:text-violet-600",
-                        "h-6 w-6 shrink-0"
+                        "h-6 w-6 shrink-0",
                       )}
                     />
                     {item.name}

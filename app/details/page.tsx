@@ -521,7 +521,7 @@ export default function DetailsPage() {
                           activityItemIdx === activity.length - 1
                             ? "h-6"
                             : "-bottom-6",
-                          "absolute left-0 top-0 flex w-6 justify-center"
+                          "absolute left-0 top-0 flex w-6 justify-center",
                         )}
                       >
                         <div className="w-px bg-gray-200" />
@@ -641,7 +641,7 @@ export default function DetailsPage() {
                                     <span
                                       className={cn(
                                         selected.bgColor,
-                                        "flex h-8 w-8 items-center justify-center rounded-full"
+                                        "flex h-8 w-8 items-center justify-center rounded-full",
                                       )}
                                     >
                                       <selected.icon
@@ -668,14 +668,14 @@ export default function DetailsPage() {
                                     <div
                                       className={cn(
                                         mood.bgColor,
-                                        "flex h-8 w-8 items-center justify-center rounded-full"
+                                        "flex h-8 w-8 items-center justify-center rounded-full",
                                       )}
                                     >
                                       <mood.icon
                                         aria-hidden="true"
                                         className={cn(
                                           mood.iconColor,
-                                          "h-5 w-5 flex-shrink-0"
+                                          "h-5 w-5 flex-shrink-0",
                                         )}
                                       />
                                     </div>

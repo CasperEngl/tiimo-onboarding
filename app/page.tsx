@@ -211,9 +211,9 @@ export default function HomePage() {
                     statIdx % 2 === 1
                       ? "sm:border-l"
                       : statIdx === 2
-                      ? "lg:border-l"
-                      : "",
-                    "flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8"
+                        ? "lg:border-l"
+                        : "",
+                    "flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2 border-t border-gray-900/5 px-4 py-10 sm:px-6 lg:border-t-0 xl:px-8",
                   )}
                 >
                   <dt className="text-sm font-medium leading-6 text-gray-500">
@@ -224,7 +224,7 @@ export default function HomePage() {
                       stat.changeType === "negative"
                         ? "text-rose-600"
                         : "text-gray-700",
-                      "text-xs font-medium"
+                      "text-xs font-medium",
                     )}
                   >
                     {stat.change}
@@ -300,7 +300,7 @@ export default function HomePage() {
                                       <div
                                         className={cn(
                                           statuses[transaction.status],
-                                          "rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset"
+                                          "rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset",
                                         )}
                                       >
                                         {transaction.status}
@@ -442,7 +442,7 @@ export default function HomePage() {
                           <div
                             className={cn(
                               statuses[client.lastInvoice.status],
-                              "rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset"
+                              "rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset",
                             )}
                           >
                             {client.lastInvoice.status}

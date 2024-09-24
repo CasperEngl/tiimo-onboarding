@@ -18,6 +18,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project Details
 
-This project is a Next.js application that uses Tailwind CSS for styling and [React Joyride](https://react-joyride.com/) for onboarding. 
+This project is a Next.js application that uses Tailwind CSS for styling and [React Joyride](https://react-joyride.com/) for onboarding.
 
 The application consists of three main pages: Home, Details, and Settings. These pages were designed using components from [Tailwind UI](https://tailwindui.com/) to demonstrate the onboarding experience.
