@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/20/solid";
 import dynamic from "next/dynamic";
 import { Fragment } from "react";
-import { useOnboarding } from "~/src/app/use-onboarding";
+import { useOnboarding } from "~/app/use-onboarding";
 import { cn } from "~/lib/utils";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });

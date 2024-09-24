@@ -12,8 +12,8 @@ import {
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { useOnboarding } from "~/app/use-onboarding";
-import { Button } from "~/src/components/ui/button";
-import { cn } from "~/src/lib/utils";
+import { Button } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
 

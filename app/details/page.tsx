@@ -29,7 +29,7 @@ import {
 } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { useOnboarding } from "~/src/app/use-onboarding";
+import { useOnboarding } from "~/app/use-onboarding";
 import { Button } from "~/components/ui/button";
 import { cn } from "~/lib/utils";
 

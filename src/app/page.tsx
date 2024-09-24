@@ -11,7 +11,7 @@ import {
 import dynamic from "next/dynamic";
 import { Fragment } from "react";
 import { useOnboarding } from "~/app/use-onboarding";
-import { cn } from "~/src/lib/utils";
+import { cn } from "~/lib/utils";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
 
