@@ -63,39 +63,8 @@ export function useOnboarding(steps: Step[]) {
           width: "25rem",
           zIndex: 1000,
         },
-        tooltip: {
-          borderRadius: "1rem",
-          padding: "1.25rem",
-        },
-        tooltipTitle: {
-          textAlign: "left",
-          fontWeight: "bold",
-          fontSize: "1.35rem",
-        },
-        tooltipContent: {
-          textAlign: "left",
-          padding: "0.5rem 0",
-        },
-        buttonNext: {
-          backgroundColor: "#FFFFFF",
-          borderRadius: "1.25rem",
-          color: "#8B5CF6",
-          fontSize: "1rem",
-          padding: "0.5rem 1rem",
-        },
-        buttonSkip: {
-          color: "#FFFFFF",
-          fontSize: "1rem",
-        },
       },
       showProgress: true,
-      floaterProps: {
-        styles: {
-          floater: {
-            filter: "none",
-          },
-        },
-      },
       tooltipComponent: ({
         index,
         tooltipProps,
