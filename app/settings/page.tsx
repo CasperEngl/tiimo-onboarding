@@ -82,6 +82,22 @@ export default function SettingsPage() {
           <div className="mx-auto max-w-2xl space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none">
             <div>
               <h2 className="text-base font-semibold leading-7 text-gray-900">
+                Onboarding
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-gray-500">
+                Manage your onboarding experience.
+              </p>
+
+              <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-6">
+                <span className="text-sm font-medium text-gray-900">
+                  Reset onboarding tour
+                </span>
+                <Button onClick={resetCompletedSteps}>Reset</Button>
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-base font-semibold leading-7 text-gray-900">
                 Profile
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-500">
@@ -244,22 +260,6 @@ export default function SettingsPage() {
                   </dd>
                 </Field>
               </dl>
-            </div>
-
-            <div>
-              <h2 className="text-base font-semibold leading-7 text-gray-900">
-                Onboarding
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-gray-500">
-                Manage your onboarding experience.
-              </p>
-
-              <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-6">
-                <span className="text-sm font-medium text-gray-900">
-                  Reset onboarding tour
-                </span>
-                <Button onClick={resetCompletedSteps}>Reset</Button>
-              </div>
             </div>
           </div>
         </main>
