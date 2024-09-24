@@ -3,13 +3,13 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { BellIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 const navigation = [
-  { name: "Home", href: "#" },
-  { name: "Invoices", href: "#" },
-  { name: "Clients", href: "#" },
-  { name: "Expenses", href: "#" },
+  { name: "Home", href: "/" },
+  { name: "Details", href: "/details" },
+  { name: "Settings", href: "/settings" },
 ];
 
 export function Header() {
@@ -35,9 +35,9 @@ export function Header() {
         </div>
         <nav className="hidden md:flex md:gap-x-11 md:text-sm md:font-semibold md:leading-6 md:text-gray-700">
           {navigation.map((item, itemIdx) => (
-            <a key={itemIdx} href={item.href}>
+            <Link key={itemIdx} href={item.href}>
               {item.name}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end gap-x-8">
@@ -87,13 +87,13 @@ export function Header() {
           </div>
           <div className="mt-2 space-y-2">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
                 href={item.href}
                 className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </DialogPanel>
