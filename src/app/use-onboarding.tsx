@@ -6,7 +6,7 @@ import {
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { CallBackProps, Props, STATUS, Step } from "react-joyride";
-import { Button } from "~/components/ui/button";
+import { Button } from "~/src/components/ui/button";
 
 const localStorageKey = "completedOnboardingSteps";
 
