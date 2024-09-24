@@ -8,8 +8,12 @@ import {
   EllipsisHorizontalIcon,
   PlusSmallIcon,
 } from "@heroicons/react/20/solid";
+import dynamic from "next/dynamic";
 import { Fragment } from "react";
+import { useJoyride } from "~/hooks/use-joyride";
 import { cn } from "~/lib/utils";
+
+const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
 
 const secondaryNavigation = [
   { name: "Last 7 days", href: "#", current: true },
@@ -141,12 +145,41 @@ const clients = [
 ] as const;
 
 export default function HomePage() {
+  const { steps, run, handleJoyrideCallback } = useJoyride([
+    {
+      target: ".home-secondary-navigation",
+      title: "Filter Options",
+      content:
+        "Use the filters to narrow down your invoices by date range or create a new invoice to keep track of your transactions.",
+    },
+    {
+      target: ".home-stats-section",
+      title: "Statistics Overview",
+      content:
+        "This section provides an overview of your financial statistics for the selected date range, including revenue, overdue invoices, outstanding invoices, and expenses.",
+    },
+    {
+      target: ".home-recent-clients-section",
+      title: "Recent Clients List",
+      content:
+        "Here you can see a list of your most recent clients along with their latest invoice details, helping you keep track of your client interactions.",
+    },
+  ]);
+
   return (
     <>
+      <JoyRideNoSSR
+        steps={steps}
+        run={run}
+        continuous
+        showSkipButton
+        callback={handleJoyrideCallback}
+      />
+
       <main>
         <div className="relative isolate overflow-hidden pt-16">
           {/* Secondary navigation */}
-          <header className="pb-4 pt-6 sm:pb-6">
+          <header className="home-secondary-navigation pb-4 pt-6 sm:pb-6">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-6 px-4 sm:flex-nowrap sm:px-6 lg:px-8">
               <h1 className="text-base font-semibold leading-7 text-gray-900">
                 Cashflow
@@ -175,7 +208,7 @@ export default function HomePage() {
           </header>
 
           {/* Stats */}
-          <div className="border-b border-b-gray-900/10 lg:border-t lg:border-t-gray-900/5">
+          <div className="home-stats-section border-b border-b-gray-900/10 lg:border-t lg:border-t-gray-900/5">
             <dl className="mx-auto grid max-w-7xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-2 xl:px-0">
               {stats.map((stat, statIdx) => (
                 <div
@@ -333,7 +366,7 @@ export default function HomePage() {
           </div>
 
           {/* Recent client list*/}
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="home-recent-clients-section mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
               <div className="flex items-center justify-between">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
