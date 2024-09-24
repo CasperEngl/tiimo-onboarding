@@ -97,7 +97,7 @@ export function useOnboarding(steps: Step[]) {
           <p className="mb-6">{step.content}</p>
           <div className="flex items-center justify-between">
             <span className="text-sm">
-              {index + 1} of {steps.length}
+              {index + 1} of {filteredSteps.length}
             </span>
             <div className="flex items-center space-x-2">
               {!isLastStep && (
