@@ -28,7 +28,7 @@ import {
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { cn } from "~/lib/utils";
-import { useJoyride } from "~/hooks/use-joyride";
+import { useOnboarding } from "~/hooks/use-onboarding";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
 
@@ -168,7 +168,7 @@ const moods = [
 
 export default function DetailsPage() {
   const [selected, setSelected] = useState(moods[5]);
-  const { steps, run, handleJoyrideCallback } = useJoyride([
+  const { defaultProps } = useOnboarding([
     {
       target: ".details-invoice-summary",
       title: "Invoice Summary",
@@ -197,13 +197,8 @@ export default function DetailsPage() {
 
   return (
     <>
-      <JoyRideNoSSR
-        steps={steps}
-        run={run}
-        continuous
-        showSkipButton
-        callback={handleJoyrideCallback}
-      />
+      <JoyRideNoSSR {...defaultProps} />
+
       <main>
         <header className="relative isolate pt-16">
           <div

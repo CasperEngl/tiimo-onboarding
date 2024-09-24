@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { useJoyride } from "~/hooks/use-joyride";
+import { useOnboarding } from "~/hooks/use-onboarding";
 import { cn } from "~/lib/utils";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
@@ -28,7 +28,7 @@ const secondaryNavigation = [
 export default function SettingsPage() {
   const [automaticTimezoneEnabled, setAutomaticTimezoneEnabled] =
     useState(true);
-  const { steps, run, handleJoyrideCallback } = useJoyride([
+  const { defaultProps, resetCompletedSteps } = useOnboarding([
     {
       target: ".settings-sidebar",
       content:
@@ -38,13 +38,7 @@ export default function SettingsPage() {
 
   return (
     <>
-      <JoyRideNoSSR
-        steps={steps}
-        run={run}
-        continuous
-        showSkipButton
-        callback={handleJoyrideCallback}
-      />
+      <JoyRideNoSSR {...defaultProps} />
 
       <div className="mx-auto max-w-7xl pt-16 lg:flex lg:items-start lg:gap-x-16 lg:px-8">
         <h1 className="sr-only">General Settings</h1>
@@ -279,6 +273,28 @@ export default function SettingsPage() {
                   </dd>
                 </Field>
               </dl>
+            </div>
+
+            <div>
+              <h2 className="text-base font-semibold leading-7 text-gray-900">
+                Onboarding
+              </h2>
+              <p className="mt-1 text-sm leading-6 text-gray-500">
+                Manage your onboarding experience.
+              </p>
+
+              <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-6">
+                <span className="text-sm font-medium text-gray-900">
+                  Reset onboarding tour
+                </span>
+                <button
+                  type="button"
+                  onClick={resetCompletedSteps}
+                  className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Reset
+                </button>
+              </div>
             </div>
           </div>
         </main>

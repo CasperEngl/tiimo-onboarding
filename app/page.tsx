@@ -10,7 +10,7 @@ import {
 } from "@heroicons/react/20/solid";
 import dynamic from "next/dynamic";
 import { Fragment } from "react";
-import { useJoyride } from "~/hooks/use-joyride";
+import { useOnboarding } from "~/hooks/use-onboarding";
 import { cn } from "~/lib/utils";
 
 const JoyRideNoSSR = dynamic(() => import("react-joyride"), { ssr: false });
@@ -145,7 +145,7 @@ const clients = [
 ] as const;
 
 export default function HomePage() {
-  const { steps, run, handleJoyrideCallback } = useJoyride([
+  const { defaultProps } = useOnboarding([
     {
       target: ".home-secondary-navigation",
       title: "Filter Options",
@@ -168,13 +168,7 @@ export default function HomePage() {
 
   return (
     <>
-      <JoyRideNoSSR
-        steps={steps}
-        run={run}
-        continuous
-        showSkipButton
-        callback={handleJoyrideCallback}
-      />
+      <JoyRideNoSSR {...defaultProps} />
 
       <main>
         <div className="relative isolate overflow-hidden pt-16">

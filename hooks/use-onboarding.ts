@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { CallBackProps, STATUS, Step } from "react-joyride";
 
-const localStorageKey = "completedJoyrideSteps";
+const localStorageKey = "completedOnboardingSteps";
 
-export function useJoyride(steps: Step[]) {
+export function useOnboarding(steps: Step[]) {
   const [run, setRun] = useState(() => {
     if (typeof window === "undefined") {
       return false;
@@ -14,7 +14,7 @@ export function useJoyride(steps: Step[]) {
     return steps.some((step) => !completedSteps.includes(step.target));
   });
 
-  const handleJoyrideCallback = (data: CallBackProps) => {
+  const handleOnboardingCallback = (data: CallBackProps) => {
     if (data.lifecycle === "complete") {
       addCompletedStep(data.step.target.toString());
 
@@ -32,11 +32,21 @@ export function useJoyride(steps: Step[]) {
     (step) => !getCompletedSteps().includes(step.target)
   );
 
+  const resetCompletedSteps = () => {
+    localStorage.removeItem(localStorageKey);
+    setRun(true);
+  };
+
   return {
-    run,
-    setRun,
-    steps: filteredSteps,
-    handleJoyrideCallback,
+    resetCompletedSteps,
+    defaultProps: {
+      run,
+      steps: filteredSteps,
+      continuous: true,
+      showSkipButton: true,
+      scrollToFirstStep: true,
+      callback: handleOnboardingCallback,
+    },
   };
 }
 
