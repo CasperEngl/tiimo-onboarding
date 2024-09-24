@@ -237,11 +237,11 @@ export default function DetailsPage() {
                   </div>
                 </h1>
               </div>
-              <div className="flex items-center gap-x-4 sm:gap-x-6">
-                <Button variant="ghost" className="hidden sm:block">
+              <div className="flex items-center gap-x-2">
+                <Button variant="outline" className="hidden sm:block">
                   Copy URL
                 </Button>
-                <Button variant="ghost" className="hidden sm:block" asChild>
+                <Button variant="outline" className="hidden sm:block" asChild>
                   <a href="#">Edit</a>
                 </Button>
                 <Button>Send</Button>
@@ -257,20 +257,12 @@ export default function DetailsPage() {
 
                   <MenuItems className="absolute right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                     <MenuItem>
-                      <button
-                        type="button"
-                        className="block w-full px-3 py-1 text-left text-sm leading-6 text-gray-900 hover:bg-gray-50"
-                      >
-                        Copy URL
-                      </button>
+                      <Button variant="ghost">Copy URL</Button>
                     </MenuItem>
                     <MenuItem>
-                      <a
-                        href="#"
-                        className="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50"
-                      >
-                        Edit
-                      </a>
+                      <Button variant="ghost" asChild>
+                        <a href="#">Edit</a>
+                      </Button>
                     </MenuItem>
                   </MenuItems>
                 </Menu>
@@ -609,16 +601,16 @@ export default function DetailsPage() {
                   <div className="absolute inset-x-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
                     <div className="flex items-center space-x-5">
                       <div className="flex items-center">
-                        <button
-                          type="button"
-                          className="-m-2.5 flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
+                        <Button
+                          className="-m-2.5 flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-400 hover:text-gray-500"
+                          variant="ghost"
                         >
                           <PaperClipIcon
                             aria-hidden="true"
                             className="h-5 w-5"
                           />
                           <span className="sr-only">Attach a file</span>
-                        </button>
+                        </Button>
                       </div>
                       <div className="flex items-center">
                         <Listbox value={selected} onChange={setSelected}>
@@ -690,12 +682,7 @@ export default function DetailsPage() {
                         </Listbox>
                       </div>
                     </div>
-                    <Button
-                      type="submit"
-                      variant="outline"
-                      size="sm"
-                      className="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                    >
+                    <Button type="submit" variant="outline" size="sm">
                       Comment
                     </Button>
                   </div>
